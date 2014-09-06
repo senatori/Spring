@@ -10,11 +10,11 @@ buildscript {
 }
 
 apply plugin: 'java'
-
 apply plugin: 'idea'
 apply plugin: 'spring-boot'
+apply plugin: 'war'
 
-jar {
+war {
     baseName = 'gs-convert-jar-to-war'
     version =  '0.1.0'
 }
@@ -25,7 +25,12 @@ repositories {
     maven { url "http://repo.spring.io/libs-release" }
 }
 
+configurations {
+    providedRuntime
+}
+
 dependencies {
     compile("org.springframework.boot:spring-boot-starter-thymeleaf")
+    providedRuntime("org.springframework.boot:spring-boot-starter-tomcat")
     testCompile("junit:junit")
 }
